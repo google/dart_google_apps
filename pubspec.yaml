@@ -1,0 +1,17 @@
+name: google_apps
+description: Interop package to make working with Google Apps scripts easier.
+version: 0.0.1
+author: Florian Loitsch <florian@loitsch.com>
+
+environment:
+  sdk: '>=1.20.1 <2.0.0'
+
+dependencies:
+  js: any
+
+dev_dependencies:
+  test: ^0.12.0
+  args: any
+  googleapis: any
+  googleapis_auth: any
+  path: any

@@ -26,7 +26,7 @@ class Spreadsheet {
 @JS()
 class Sheet {
   external Range getActiveCell();
-  external Range getRange(int row, int column, [int rumRows, int numColumns]);
+  external Range getRange(dynamic /*String or int*/ rowOrA1Notation, [int column, int rumRows, int numColumns]);
   external int getMaxRows();
   external int getMaxColumns();
   external String getName();

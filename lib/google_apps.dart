@@ -23,6 +23,70 @@ class HtmlOutput {
 @JS()
 class DocumentApp {
   external static UI getUi();
+  external static Document create(String name);
+  external static HorizontalAligmnentContainer get HorizontalAlignment;
+}
+
+@JS()
+class Document {
+  external Body getBody();
+  external String getId();
+}
+
+@JS()
+class Element {
+
+}
+
+@JS()
+class Body implements Element {
+  external Paragraph appendParagraph(String text);
+  external PageBreak appendPageBreak();
+  external Table appendTable([List<List<String>> cells]);
+  external Element getChild(int childIndex);
+}
+
+@JS()
+class Paragraph implements Element {
+  external Paragraph setAlignment(HorizontalAlignment alignment);
+  external Text editAsText();
+  external void setText(String text);
+}
+
+// This class doesn't really exist in JS. Not sure if this will lead to
+// problems.
+@JS()
+class HorizontalAligmnentContainer {
+  external HorizontalAlignment get LEFT;
+  external HorizontalAlignment get CENTER;
+  external HorizontalAlignment get RIGHT;
+  external HorizontalAlignment get JUSTIFY;
+}
+
+@JS()
+class HorizontalAlignment {
+}
+
+@JS()
+class Text implements Element {
+  external Text setFontSize(int sizeOrStart, [int endInclusive, int size]);
+}
+
+@JS()
+class Table implements Element {
+  external TableCell getCell(int rowIndex, int cellIndex);
+  external Table setBorderColor(String color);
+}
+
+@JS()
+class TableCell implements Element {
+  external Element getChild(int childIndex);
+  external Text editAsText();
+}
+
+@JS()
+class PageBreak implements Element {
+
 }
 
 @JS()
@@ -124,6 +188,8 @@ class Range {
   external String getA1Notation();
   /// Relative to this range.
   external Range getCell(int row, int column);
+  external int getNumRows();
+  external int getNumColumns();
 }
 
 @JS()

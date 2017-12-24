@@ -128,6 +128,7 @@ class Sheet {
   external void insertRows(rowIndex, [int numRows]);
   external Sheet insertRowsAfter(int afterPosition, int howMany);
   external Sheet insertRowsBefore(int beforePosition, int howMany);
+  external int getIndex();
 }
 
 @JS()

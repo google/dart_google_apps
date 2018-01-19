@@ -10,13 +10,20 @@ Stream watchPath(String path, {bool emitAtListen: false}) async* {
   var file = new io.File(path);
   if (file.existsSync() && emitAtListen) yield null;
 
+  outerLoop:
   while (true) {
     if (!file.existsSync()) {
       var directory = p.dirname(path);
+      while (!new io.Directory(directory).existsSync()) {
+        directory = p.dirname(directory);
+      }
       await for (var directoryEvent in new DirectoryWatcher(directory).events) {
         if (file.existsSync()) {
           yield null;
           break;
+        } else {
+          // In case we are listening for directories to be created.
+          continue outerLoop;
         }
       }
     }

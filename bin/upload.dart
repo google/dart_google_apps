@@ -29,14 +29,15 @@ class Uploader {
   Future authenticate(String id, String secret) async {
     _baseClient = new Client();
     var clientId = new ClientId(id, secret);
-    var credentials = _readSavedCredentials();
+    var credentials = _readSavedCredentials(id, secret);
     if (credentials == null ||
-        credentials.refreshToken == null && credentials.accessToken.hasExpired) {
+        credentials.refreshToken == null &&
+            credentials.accessToken.hasExpired) {
       credentials = await obtainAccessCredentialsViaUserConsent(
           clientId, _SCOPES, _baseClient, (String str) {
         print("Please authorize at this URL: $str");
       });
-      _saveCredentials(credentials);
+      _saveCredentials(id, secret, credentials);
     }
     _client = credentials.refreshToken == null
         ? authenticatedClient(_baseClient, credentials)
@@ -49,9 +50,8 @@ class Uploader {
     await _baseClient.close();
   }
 
-  String _createPayload(String source, String projectName,
-      Map<String, dynamic> existing) {
-
+  String _createPayload(
+      String source, String projectName, Map<String, dynamic> existing) {
     // See https://developers.google.com/apps-script/guides/import-export.
     var payload = {
       "name": projectName,
@@ -69,7 +69,8 @@ class Uploader {
   Future<String> _findFolder(DriveApi drive, Iterable<String> segments) async {
     var parentId = "root";
     for (var segment in segments) {
-      var q = "name = '$segment' and '$parentId' in parents and trashed = false";
+      var q =
+          "name = '$segment' and '$parentId' in parents and trashed = false";
       var nestedFiles = (await drive.files.list(q: q)).files;
       if (nestedFiles.length == 1 &&
           nestedFiles[0].mimeType == "application/vnd.google-apps.folder") {
@@ -132,19 +133,21 @@ class Uploader {
     print("Uploading ${_projectName} done");
   }
 
-  final String _savedCredentialsPath = () {
+  String _savedCredentialsPath(String id, String secret) {
+    String fileName = "$id-$secret.json";
     if (io.Platform.environment.containsKey('UPLOAD_APPS_SCRIPT_CACHE')) {
       return io.Platform.environment['UPLOAD_APPS_SCRIPT_CACHE'];
     } else if (io.Platform.operatingSystem == 'windows') {
       var appData = io.Platform.environment['APPDATA'];
-      return p.join(appData, 'UploadAppsScript', 'Cache');
+      return p.join(appData, 'UploadAppsScript', 'Cache', fileName);
     } else {
-      return '${io.Platform.environment['HOME']}/.upload_apps_script-cache';
+      return p.join(io.Platform.environment['HOME'],
+          '.upload_apps_script-cache', fileName);
     }
-  }();
+  }
 
-  AccessCredentials _readSavedCredentials() {
-    var file = new io.File(_savedCredentialsPath);
+  AccessCredentials _readSavedCredentials(String id, String secret) {
+    var file = new io.File(_savedCredentialsPath(id, secret));
     if (!file.existsSync()) return null;
     var decoded = JSON.decode(file.readAsStringSync());
     var refreshToken = decoded['refreshToken'];
@@ -161,18 +164,26 @@ class Uploader {
     return new AccessCredentials(accessToken, refreshToken, scopes);
   }
 
-  void _saveCredentials(AccessCredentials credentials) {
-    var accessToken = credentials.accessToken;
-    var encoded = JSON.encode({
-      'refreshToken': credentials.refreshToken,
-      'accessToken': {
-        "type": accessToken.type,
-        "data": accessToken.data,
-        "expiry": accessToken.expiry.millisecondsSinceEpoch
-      },
-      'scopes': credentials.scopes
-    });
-    new io.File(_savedCredentialsPath).writeAsStringSync(encoded);
+  void _saveCredentials(
+      String id, String secret, AccessCredentials credentials) {
+    try {
+      var accessToken = credentials.accessToken;
+      var encoded = JSON.encode({
+        'refreshToken': credentials.refreshToken,
+        'accessToken': {
+          "type": accessToken.type,
+          "data": accessToken.data,
+          "expiry": accessToken.expiry.millisecondsSinceEpoch
+        },
+        'scopes': credentials.scopes
+      });
+      var credentialsPath = _savedCredentialsPath(id, secret);
+      var directory = new io.Directory(p.dirname(credentialsPath));
+      if (!directory.existsSync()) directory.createSync(recursive: true);
+      new io.File(credentialsPath).writeAsStringSync(encoded);
+    } catch (e) {
+      print("Couldn't save credentials: $e");
+    }
   }
 }
 
@@ -205,7 +216,8 @@ main(List<String> args) async {
   var destination = parsedArgs.rest.last;
 
   var uploader = new Uploader(destination);
-  await uploader.authenticate(parsedArgs['client-id'], parsedArgs['client-secret']);
+  await uploader.authenticate(
+      parsedArgs['client-id'], parsedArgs['client-secret']);
   var source = new io.File(sourcePath).readAsStringSync();
   await uploader.uploadScript(source);
   await uploader.close();

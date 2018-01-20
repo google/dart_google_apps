@@ -122,12 +122,14 @@ class Sheet {
   external Sheet clearContents();
   external Sheet clearFormats();
   external Sheet setColumnWidth(int columnIndex, int width);
+  external Sheet setRowHeight(int rowIndex, int height);
   external Sheet insertRowAfter(int afterPosition);
   external Sheet insertRowBefore(int beforePosition);
   /// [numRows] is defaulting to 1.
   external void insertRows(rowIndex, [int numRows]);
   external Sheet insertRowsAfter(int afterPosition, int howMany);
   external Sheet insertRowsBefore(int beforePosition, int howMany);
+  external void insertColumns(columnIndex, [int numColumns]);
   external int getIndex();
 }
 

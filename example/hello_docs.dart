@@ -34,12 +34,11 @@ void sayHelloDart() {
   DocumentApp.getUi().alert("Hello world");
 }
 
-void onOpenDart(e, [String prefix]) {
+void onOpenDart(e) {
   DocumentApp
       .getUi()
       .createMenu("from dart")
-      .addItem(
-          "say hello", prefix == null ? "sayHello" : "$prefix.sayHello")
+      .addItem("say hello", "sayHello")
       .addToUi();
 }
 

@@ -1,6 +1,16 @@
 # google_apps
 
+This is not an official Google product.
+
 A library to write Google Apps scripts.
+
+This library has been written on a per-need basis. As such it is missing lots
+of useful functionality that I just hadn't needed yet. Until the API coverage
+is nearing completeness I recommend to checkout the GIT repository during
+development and to use this library with a `path` directive, adding the missing
+functions when they are encountered.
+
+Consider contributing your changes back to the original repository.
 
 ## Usage
 

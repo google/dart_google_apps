@@ -13,37 +13,47 @@
 // limitations under the License.
 
 /// Compile this example with
-/// `dart2js --csp -o hello.js example/hello_docs.dart`.
+/// `dart2js --csp -o menu.js example/menu.dart`.
 ///
 /// See [apps_script_uploader](https://pub.dartlang.org/packages/apps_script_uploader)
 /// for a description on how to execute the generated program.
 
 @JS()
-library hello_docs;
+library demo;
 
+import 'package:google_apps/spreadsheet.dart';
 import 'package:js/js.dart';
-import 'package:google_apps/document.dart';
-
-@JS()
-external set sayHello(value);
 
 @JS()
 external set onOpen(value);
 
-void sayHelloDart() {
-  DocumentApp.getUi().alert("Hello world");
-}
+@JS()
+external set demo(value);
 
+// The optional [prefix] is to make it easier to use this function
+// in a shared library.
 void onOpenDart(e, [String prefix]) {
-  DocumentApp
+  if (prefix == null) {
+    prefix = "";
+  } else {
+    prefix = "$prefix.";
+  }
+  SpreadsheetApp
       .getUi()
-      .createMenu("from dart")
-      .addItem(
-          "say hello", prefix == null ? "sayHello" : "$prefix.sayHello")
+      .createMenu("Dart")
+      .addItem("hello", "hello")
       .addToUi();
 }
 
-main(List<String> arguments) {
+void exportToJs() {
   onOpen = allowInterop(onOpenDart);
-  sayHello = allowInterop(sayHelloDart);
+  demo = allowInterop(demoDart);
+}
+
+void demoDart() {
+  SpreadsheetApp.getUi().alert("Hello World");
+}
+
+main() {
+  exportToJs();
 }

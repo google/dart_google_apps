@@ -31,18 +31,11 @@ external set onOpen(value);
 @JS()
 external set demo(value);
 
-// The optional [prefix] is to make it easier to use this function
-// in a shared library.
-void onOpenDart(e, [String prefix]) {
-  if (prefix == null) {
-    prefix = "";
-  } else {
-    prefix = "$prefix.";
-  }
+void onOpenDart(e) {
   SpreadsheetApp
       .getUi()
       .createMenu("Dart")
-      .addItem("sheet", "${prefix}sheet")
+      .addItem("sheet", "sheet")
       .addToUi();
 }
 

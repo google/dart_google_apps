@@ -1,4 +1,4 @@
-# google_apps
+# Dart APIs for Google Apps scripts
 
 This is not an official Google product.
 

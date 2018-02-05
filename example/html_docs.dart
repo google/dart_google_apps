@@ -33,18 +33,11 @@ external set demo(value);
 @JS()
 external set modal(value);
 
-// The optional [prefix] is to make it easier to use this function
-// in a shared library.
-void onOpenDart(e, [String prefix]) {
-  if (prefix == null) {
-    prefix = "";
-  } else {
-    prefix = "$prefix.";
-  }
+void onOpenDart(e) {
   SpreadsheetApp
       .getUi()
       .createMenu("Dart")
-      .addItem("demo", "${prefix}demo")
+      .addItem("demo", "demo")
       .addToUi();
 }
 

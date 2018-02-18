@@ -13,11 +13,16 @@
 // limitations under the License.
 
 @JS()
-library apps;
+library drive;
 
 import 'package:js/js.dart';
-export 'document.dart';
-export 'drive.dart';
-export 'spreadsheet.dart';
-export 'html.dart';
-export 'ui.dart';
+
+@JS()
+class DriveApp {
+  external static File createFile(String name, String content);
+}
+
+@JS()
+class File {
+  external static String getDownloadUrl();
+}

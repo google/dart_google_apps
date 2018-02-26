@@ -16,6 +16,7 @@ name: google_apps
 description: Libraries to allow writing Google Apps Scripts.
 version: 0.0.1
 author: Florian Loitsch <florian@loitsch.com>
+homepage: https://github.com/google/dart_google_apps
 
 environment:
   sdk: '>=1.20.1 <2.0.0'

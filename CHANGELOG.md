@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.1+3
+
+- Fix the sheet example.
+
 ## 0.0.1+2
 
 - Update README (removing the example and adding the issue tracker).

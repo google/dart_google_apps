@@ -35,7 +35,7 @@ void onOpenDart(e) {
   SpreadsheetApp
       .getUi()
       .createMenu("Dart")
-      .addItem("sheet", "sheet")
+      .addItem("demo", "demo")
       .addToUi();
 }
 

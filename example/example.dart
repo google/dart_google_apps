@@ -15,7 +15,7 @@
 /// Compile this example with
 /// `dart2js --csp -o hello.js example/hello_docs.dart`.
 ///
-/// See [apps_script_uploader](https://pub.dartlang.org/packages/apps_script_uploader)
+/// See [apps_script_tools](https://pub.dartlang.org/packages/apps_script_tools)
 /// for a description on how to execute the generated program.
 
 @JS()

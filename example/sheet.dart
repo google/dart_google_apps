@@ -15,7 +15,7 @@
 /// Compile this example with
 /// `dart2js --csp -o sheet.js example/sheet.dart`.
 ///
-/// See [apps_script_uploader](https://pub.dartlang.org/packages/apps_script_uploader)
+/// See [apps_script_tools](https://pub.dartlang.org/packages/apps_script_tools)
 /// for a description on how to execute the generated program.
 
 @JS()
@@ -35,7 +35,7 @@ void onOpenDart(e) {
   SpreadsheetApp
       .getUi()
       .createMenu("Dart")
-      .addItem("sheet", "sheet")
+      .addItem("demo", "demo")
       .addToUi();
 }
 

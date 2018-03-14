@@ -26,6 +26,7 @@ class DocumentApp {
   external static UI getUi();
   external static Document create(String name);
   external static HorizontalAligmnentContainer get HorizontalAlignment;
+  external static ParagraphHeadingContainer get ParagraphHeading;
 }
 
 @JS()
@@ -52,6 +53,8 @@ class Paragraph implements Element {
   external Paragraph setAlignment(HorizontalAlignment alignment);
   external Text editAsText();
   external void setText(String text);
+  external Paragraph setHeading(ParagraphHeading heading);
+  external ParagraphHeading getHeading();
 }
 
 // This class doesn't really exist in JS. Not sure if this will lead to
@@ -68,9 +71,29 @@ class HorizontalAligmnentContainer {
 class HorizontalAlignment {
 }
 
+// This class doesn't really exist in JS. Not sure if this will lead to
+// problems.
+@JS()
+class ParagraphHeadingContainer {
+  external ParagraphHeading get NORMAL;
+  external ParagraphHeading get HEADING1;
+  external ParagraphHeading get HEADING2;
+  external ParagraphHeading get HEADING3;
+  external ParagraphHeading get HEADING4;
+  external ParagraphHeading get HEADING5;
+  external ParagraphHeading get HEADING6;
+  external ParagraphHeading get TITLE;
+  external ParagraphHeading get SUBTITLE;
+}
+
+@JS()
+class ParagraphHeading {
+}
+
 @JS()
 class Text implements Element {
   external Text setFontSize(int sizeOrStart, [int endInclusive, int size]);
+  external Text setBold(dynamic valueOrStart, [int endInclusive, bool value]);
 }
 
 @JS()

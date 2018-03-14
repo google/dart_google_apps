@@ -63,6 +63,9 @@ class Sheet {
   external Sheet insertRowsBefore(int beforePosition, int howMany);
   external void insertColumns(columnIndex, [int numColumns]);
   external int getIndex();
+  external Sheet appendRow(List<dynamic> rowContents);
+  external Sheet hideSheet();
+  external bool isSheetHidden();
 }
 
 @JS()

@@ -1,10 +1,10 @@
-# Dart APIs for Google Apps scripts
+# Dart APIs for Google Apps Script
 
 This is not an official Google product. It is not supported by the Dart team.
 
 This package is still in an experimental state.
 
-A library to write Google Apps scripts.
+A library to write Google Apps Script.
 
 This library has been written on a per-need basis. As such it is missing lots
 of useful functionality that I just hadn't needed yet. Until the API coverage

@@ -20,9 +20,21 @@ import 'package:js/js.dart';
 @JS()
 class DriveApp {
   external static File createFile(String name, String content);
+  external static Folder getRootFolder();
+  external static File getFileById(String id);
 }
 
 @JS()
 class File {
-  external static String getDownloadUrl();
+  external String getId();
+  external String getDownloadUrl();
+}
+
+@JS()
+class Folder {
+  external String getId();
+  external Folder createFolder(String name);
+  external Folder addFile(File child);
+  external Folder removeFile(File file);
+
 }

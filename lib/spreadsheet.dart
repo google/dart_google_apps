@@ -27,6 +27,7 @@ class SpreadsheetApp {
   external static Spreadsheet getActiveSpreadsheet();
   external static Sheet getActiveSheet();
   external static Range getActiveRange();
+  external static Spreadsheet create(String name);
 }
 
 @JS()
@@ -37,6 +38,9 @@ class Spreadsheet {
   external void deleteSheet(Sheet sheet);
   external void deleteActiveSheet();
   external List<Sheet> getSheets();
+  external String getId();
+  external Sheet setActiveSheet(Sheet sheet);
+  external void moveActiveSheet(int pos);
 }
 
 @JS()
@@ -66,6 +70,7 @@ class Sheet {
   external Sheet appendRow(List<dynamic> rowContents);
   external Sheet hideSheet();
   external bool isSheetHidden();
+  external Sheet copyTo(Spreadsheet targetSpreadsheet);
 }
 
 @JS()
@@ -83,6 +88,8 @@ class Range {
   external String getFormulaR1C1();
   external List<List<String>> getFormulasR1C1();
   external Range setFormula(String formula);
+  /// [options] may be a JS-map with entries 'formatOnly' or 'contentsOnly'.
+  external void copyTo(Range destination, [options]);
 
   /**
    * The size of the two-dimensional array must match the size of the range.
@@ -128,4 +135,6 @@ class Range {
   external Range getCell(int row, int column);
   external int getNumRows();
   external int getNumColumns();
+  external Range clear();
+  external Range setNote(String note);
 }

@@ -34,6 +34,7 @@ class SpreadsheetApp {
 class Spreadsheet {
   external Sheet getSheetByName(String name);
   external Range getRangeByName(String name);
+  external void setNamedRange(String name, Range range);
   external Sheet insertSheet([int index]);
   external void deleteSheet(Sheet sheet);
   external void deleteActiveSheet();
@@ -137,4 +138,9 @@ class Range {
   external int getNumColumns();
   external Range clear();
   external Range setNote(String note);
+
+  /// Sets the font weight.
+  ///
+  /// The argument [fontWeight] must be either "bold" or "normal".
+  external Range setFontWeight(String fontWeight);
 }

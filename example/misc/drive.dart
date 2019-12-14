@@ -12,28 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@JS()
-library drive;
+/// Compile this example with
+/// `dart2js --csp -o drive.js example/drive.dart`.
+///
+/// See [apps_script_tools](https://pub.dartlang.org/packages/apps_script_tools)
+/// for a description on how to execute the generated program.
 
-import 'package:js/js.dart';
+import 'package:google_apps/drive.dart';
 
-@JS()
-class DriveApp {
-  external static File createFile(String name, String content);
-  external static Folder getRootFolder();
-  external static File getFileById(String id);
-}
-
-@JS()
-class File {
-  external String getId();
-  external String getDownloadUrl();
-}
-
-@JS()
-class Folder {
-  external String getId();
-  external Folder createFolder(String name);
-  external Folder addFile(File child);
-  external Folder removeFile(File file);
+main() {
+  DriveApp.createFile("hello.txt", "Hello from Dart");
 }

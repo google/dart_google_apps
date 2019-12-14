@@ -92,37 +92,35 @@ class Range {
   /// [options] may be a JS-map with entries 'formatOnly' or 'contentsOnly'.
   external void copyTo(Range destination, [options]);
 
-  /**
-   * The size of the two-dimensional array must match the size of the range.
-   * ```
-   * var formulas = [
-   *   ["=SUM(B2:B4)", "=SUM(C2:C4)", "=SUM(D2:D4)"],
-   *   ["=AVERAGE(B2:B4)", "=AVERAGE(C2:C4)", "=AVERAGE(D2:D4)"]
-   * ];
-   * var cell = sheet.getRange("B5:D6");
-   * cell.setFormulas(formulas);
-   * ```
-   */
+
+  /// The size of the two-dimensional array must match the size of the range.
+  /// ```
+  /// var formulas = [
+  ///   ["=SUM(B2:B4)", "=SUM(C2:C4)", "=SUM(D2:D4)"],
+  ///   ["=AVERAGE(B2:B4)", "=AVERAGE(C2:C4)", "=AVERAGE(D2:D4)"]
+  /// ];
+  /// var cell = sheet.getRange("B5:D6");
+  /// cell.setFormulas(formulas);
+  /// ```
   external Range setFormulas(List<List<String>> formulas);
   external Range setFormulaR1C1(String formula);
 
-  /**
-   * This creates formulas for a row of sums, followed by a row of averages.
-   * ```
-   * var sumOfRowsAbove = "=SUM(R[-3]C[0]:R[-1]C[0])";
-   * var averageOfRowsAbove = "=AVERAGE(R[-4]C[0]:R[-2]C[0])";
-   * ```
-   *
-   * The size of the two-dimensional array must match the size of the range.
-   * ```
-   * var formulas = [
-   *   [sumOfRowsAbove, sumOfRowsAbove, sumOfRowsAbove],
-   *   [averageOfRowsAbove, averageOfRowsAbove, averageOfRowsAbove]
-   * ];
-   * var cell = sheet.getRange("B5:D6");
-   * cell.setFormulasR1C1(formulas);
-   * ```
-   */
+
+  /// This creates formulas for a row of sums, followed by a row of averages.
+  /// ```
+  /// var sumOfRowsAbove = "=SUM(R[-3]C[0]:R[-1]C[0])";
+  /// var averageOfRowsAbove = "=AVERAGE(R[-4]C[0]:R[-2]C[0])";
+  /// ```
+  ///
+  /// The size of the two-dimensional array must match the size of the range.
+  /// ```
+  /// var formulas = [
+  ///   [sumOfRowsAbove, sumOfRowsAbove, sumOfRowsAbove],
+  ///   [averageOfRowsAbove, averageOfRowsAbove, averageOfRowsAbove]
+  /// ];
+  /// var cell = sheet.getRange("B5:D6");
+  /// cell.setFormulasR1C1(formulas);
+  /// ```
   external Range setFormulasR1C1(List<List<String>> formulas);
   external Range offset(int row, int column, [int numRows, int numColumns]);
   external Sheet getSheet();

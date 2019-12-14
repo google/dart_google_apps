@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.0
+
+- Add a big tournament example.
+- Add a tiny drive example.
+- Fix some linter complaints.
+
 ## 0.0.1+3
 
 - Fix the sheet example.

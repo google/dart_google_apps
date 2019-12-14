@@ -25,7 +25,7 @@ export 'ui.dart';
 class DocumentApp {
   external static UI getUi();
   external static Document create(String name);
-  external static HorizontalAligmnentContainer get HorizontalAlignment;
+  external static HorizontalAlignmentContainer get HorizontalAlignment;
   external static ParagraphHeadingContainer get ParagraphHeading;
 }
 
@@ -36,9 +36,7 @@ class Document {
 }
 
 @JS()
-class Element {
-
-}
+class Element {}
 
 @JS()
 class Body implements Element {
@@ -60,7 +58,7 @@ class Paragraph implements Element {
 // This class doesn't really exist in JS. Not sure if this will lead to
 // problems.
 @JS()
-class HorizontalAligmnentContainer {
+class HorizontalAlignmentContainer {
   external HorizontalAlignment get LEFT;
   external HorizontalAlignment get CENTER;
   external HorizontalAlignment get RIGHT;
@@ -68,8 +66,7 @@ class HorizontalAligmnentContainer {
 }
 
 @JS()
-class HorizontalAlignment {
-}
+class HorizontalAlignment {}
 
 // This class doesn't really exist in JS. Not sure if this will lead to
 // problems.
@@ -87,8 +84,7 @@ class ParagraphHeadingContainer {
 }
 
 @JS()
-class ParagraphHeading {
-}
+class ParagraphHeading {}
 
 @JS()
 class Text implements Element {
@@ -109,6 +105,4 @@ class TableCell implements Element {
 }
 
 @JS()
-class PageBreak implements Element {
-
-}
+class PageBreak implements Element {}

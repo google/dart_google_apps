@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.3.0
+## 0.1.0
 
 - Add a big tournament example.
 - Add a tiny drive example.

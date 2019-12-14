@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.1.1
+- Add link to medium article in README.
+
 ## 0.1.0
 
 - Add a big tournament example.

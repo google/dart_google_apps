@@ -2,6 +2,10 @@
 
 This is not an official Google product. It is not supported by the Dart team.
 
+See [article] for a blog post explaining how to use this package.
+
+[article]: https://medium.com/@florian_32814/google-apps-scripts-with-dart-402c042fa606
+
 This package is still in an experimental state.
 
 A library to write Google Apps Script.

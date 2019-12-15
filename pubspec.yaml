@@ -16,7 +16,7 @@ name: google_apps
 description: >
   Google Apps Scripts wrapper libraries. These libraries expose the Google
   Apps APIs so they can be used in Dart.
-version: 0.1.1
+version: 0.1.2
 author: Florian Loitsch <florian@loitsch.com>
 homepage: https://github.com/google/dart_google_apps
 

@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.1.2
+- Run dartfmt.
+
 ## 0.1.1
 - Add link to medium article in README.
 

@@ -47,7 +47,8 @@ class Spreadsheet {
 @JS()
 class Sheet {
   external Range getActiveCell();
-  external Range getRange(dynamic /*String or int*/ rowOrA1Notation, [int column, int rumRows, int numColumns]);
+  external Range getRange(dynamic /*String or int*/ rowOrA1Notation,
+      [int column, int rumRows, int numColumns]);
   external Range getDataRange();
   external int getMaxRows();
   external int getMaxColumns();
@@ -62,6 +63,7 @@ class Sheet {
   external Sheet setRowHeight(int rowIndex, int height);
   external Sheet insertRowAfter(int afterPosition);
   external Sheet insertRowBefore(int beforePosition);
+
   /// [numRows] is defaulting to 1.
   external void insertRows(rowIndex, [int numRows]);
   external Sheet insertRowsAfter(int afterPosition, int howMany);
@@ -89,9 +91,9 @@ class Range {
   external String getFormulaR1C1();
   external List<List<String>> getFormulasR1C1();
   external Range setFormula(String formula);
+
   /// [options] may be a JS-map with entries 'formatOnly' or 'contentsOnly'.
   external void copyTo(Range destination, [options]);
-
 
   /// The size of the two-dimensional array must match the size of the range.
   /// ```
@@ -104,7 +106,6 @@ class Range {
   /// ```
   external Range setFormulas(List<List<String>> formulas);
   external Range setFormulaR1C1(String formula);
-
 
   /// This creates formulas for a row of sums, followed by a row of averages.
   /// ```
@@ -130,6 +131,7 @@ class Range {
   external String getBackgroundColor();
   external List<List<String>> getBackgrounds();
   external String getA1Notation();
+
   /// Relative to this range.
   external Range getCell(int row, int column);
   external int getNumRows();

@@ -25,7 +25,6 @@ class Tasklists {
   external static void remove(String id);
 }
 
-
 @JS()
 class Tasklist {
   external String get etag;
@@ -48,11 +47,9 @@ class Tasklist {
 
   external set title(String title);
 
-
   external String get updated;
 
   external set updated(String updated);
-
 }
 
 // https://developers.google.com/tasks/v1/reference/tasks
@@ -71,28 +68,60 @@ class Tasks {
   external static Task get(String tasklist, String task);
 
   external static Task insert(Task resource, String tasklist,
-      [String parent, String previous]);
+      [TaskOptions taskOptions]);
 
-  external static Tasks list(String tasklist,
-      [String completedMax,
-        String completedMin,
-        String dueMax,
-        String dueMin,
-        num maxResults,
-        String pageToken,
-        bool showCompleted,
-        bool showDeleted,
-        bool showHidden,
-        String updatedMin]);
+  external static Tasks list(String tasklist, [TaskOptions taskOptions]);
 
   external static Task move(String tasklist, String task,
-      [String parent, String previous]);
+      [TaskOptions taskOptions]);
 
   external static Task patch(Task resource, String tasklist, String task);
 
   external static void remove(String tasklist, String task);
 
   external static Task update(Task resource, String tasklist, String task);
+}
+
+@JS()
+@anonymous
+class TaskOptions {
+  external String get completedMax;
+
+  external String get completedMin;
+
+  external String get dueMax;
+
+  external String get dueMin;
+
+  external num get maxResults;
+
+  external String get pageToken;
+
+  external bool get showCompleted;
+
+  external bool get showDeleted;
+
+  external bool get showHidden;
+
+  external String get updatedMin;
+
+  external String get parent;
+
+  external String get previous;
+
+  external factory TaskOptions(
+      {String completedMax,
+      String completedMin,
+      String dueMax,
+      String dueMin,
+      num maxResults,
+      String pageToken,
+      bool showCompleted,
+      bool showDeleted,
+      bool showHidden,
+      String updatedMin,
+      String parent,
+      String previous});
 }
 
 @JS()
@@ -141,11 +170,10 @@ class Task {
 
   external set selfLink(String selfLink);
 
-
+  // figure out how to seamlessly convert these to DateTimes for dart
   external String get due;
 
   external set due(String due);
-
 
   external String get completed;
 
@@ -154,7 +182,6 @@ class Task {
   external String get updated;
 
   external set updated(String updated);
-
 }
 
 @JS()

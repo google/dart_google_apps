@@ -170,7 +170,6 @@ class Task {
 
   external set selfLink(String selfLink);
 
-  // figure out how to seamlessly convert these to DateTimes for dart
   external String get due;
 
   external set due(String due);

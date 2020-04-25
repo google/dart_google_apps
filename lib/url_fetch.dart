@@ -2,7 +2,6 @@
 library url_fetch;
 
 import 'dart:html';
-//import 'dart:js';
 
 import 'package:js/js.dart';
 

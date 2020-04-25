@@ -1,8 +1,6 @@
 @JS()
 library properties;
 
-//import 'dart:js';
-
 import 'package:js/js.dart';
 
 @JS()
